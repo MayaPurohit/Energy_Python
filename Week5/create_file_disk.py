@@ -9,7 +9,7 @@ import tempfile
 import sys
 #import matplotlib.pyplot as plt
 import time 
-import datetime
+from datetime import datetime
 import subprocess
 
 
@@ -33,7 +33,7 @@ def readFile(filepath):
             # time.sleep(10)
 
 
-def writeFile(filename, power10):
+def writeFile(filename, power10, original_time):
     ''' Creates temporary files of a given size to be stored in the filepath that is inputted 
 
     Parameters:
@@ -44,9 +44,15 @@ def writeFile(filename, power10):
         int used to determine the number of bytes the file will be. The file created will be (10 ** power10) bytes large  
     '''
     #create temporary file
-    print(f"Writing File size = {10 ** power10}, time = {datetime.datetime.now()}")
+    time_format = '%Y-%m-%d %H:%M:%S'
+    original_time_int = int(original_time.timestamp())
+
+    current_time = datetime.now()
+    current_time_int = int(current_time.timestamp())
+
+    print(f"Writing File size = {10 ** power10}, time = {current_time}, time elapsed: {current_time_int - original_time_int}")
     full_path = os.path.join("/home/cc/transfer_files", filename)
-    with open(full_path, 'wb') as f:
+    with open(full_path, 'wb+') as f:
         f.write(os.urandom(10 **power10))
     return f
 
@@ -64,13 +70,18 @@ def write(numFiles):
 
 
     os.makedirs("/home/cc/transfer_files", exist_ok= True)   
-
-    print("Writing files: ", datetime.datetime.now())
+    og_time = datetime.now()
+    print("Writing files: ", og_time)
     #write files of different sizes
-    for i in range(int(numFiles) + 1): 
-        file = writeFile("file_" + str(i), i)
+    for j in range(3):
+        print("Sleeping for Ten Seconds: ")
+        time.sleep(10)
+        for i in range(int(numFiles) + 1): 
+            writeFile("file_" + str(i) + "_" + str(j), i, og_time)
+    # for i in range(int(numFiles) + 1): 
+    #     file = writeFile("file_" + str(i), i)
 
-    return file
+    
 
 
 def run():

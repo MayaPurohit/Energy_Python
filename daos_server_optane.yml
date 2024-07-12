@@ -1,0 +1,159 @@
+# Example configuration file using TCP sockets
+
+name: daos_server           # sys group daos_server
+access_points: ['10.140.82.237']  # ip address of only the metadata server
+# port: 10001               # control listen port, default 10001
+provider: ofi+tcp;ofi_rxm
+control_log_mask: DEBUG
+control_log_file: /tmp/daos_server.log
+
+telemetry_port: 9191
+
+transport_config:
+  allow_insecure: true
+## Transport Credentials Specifying certificates to secure communications
+##
+#transport_config:
+#  # Specify to bypass loading certificates and use insecure communications channels
+#  allow_insecure: false
+#  # Location where daos_server will look for Client certificates
+#  client_cert_dir: .daos/clients
+#  client_cert_dir: /etc/daos/certs/clients
+#  # Custom CA Root certificate for generated certs
+#  ca_cert: /etc/daos/certs/daosCA.crt
+#  # Server certificate for use in TLS handshakes
+#  cert: /etc/daos/certs/server.crt
+#  # Key portion of Server Certificate
+#  key: /etc/daos/certs/server.key
+engines:
+  -
+    rank: 0
+    pinned_numa_node: 1 #0
+    targets: 1               # number of I/O service threads per-engine
+    nr_xs_helpers: 1 # 4          # count of I/O offload threads per engine
+    fabric_iface: eth4
+    fabric_iface_port: 31316
+    log_mask: ERR
+    log_file: /tmp/daos_engine.0.log
+
+    # Environment variable values should be supplied without encapsulating quotes.
+    env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+      - FI_SOCKETS_MAX_CONN_RETRY=1
+      - FI_SOCKETS_CONN_TIMEOUT=2000
+
+    # Storage definitions (one per tier)
+    storage:
+      -
+        # When class is set to dcpm, scm_list is the list of device paths for
+        # PMem namespaces (currently only one per engine supported).
+        class: dcpm
+        scm_list: [/dev/pmem1]
+        scm_mount: /mnt/daos1
+
+        # When class is set to ram, tmpfs will be used to emulate SCM.
+        # The size of ram is specified by scm_size in GB units.
+        # class: ram
+        # scm_size: 6
+  # -
+  #   pinned_numa_node: 1
+  #   targets: 16               # number of I/O service threads per-engine
+  #   nr_xs_helpers: 4          # count of I/O offload threads per engine
+  #   fabric_iface: eth4
+  #   fabric_iface_port: 31416
+  #   log_mask: ERR
+  #   log_file: /tmp/daos_engine.1.log
+
+  #   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+  #     - FI_SOCKETS_MAX_CONN_RETRY=1
+  #     - FI_SOCKETS_CONN_TIMEOUT=2000
+
+  #   storage:
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem2]
+      #   scm_mount: /mnt/daos2
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem3]
+      #   scm_mount: /mnt/daos3
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem4]
+      #   scm_mount: /mnt/daos4
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem5]
+      #   scm_mount: /mnt/daos5
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem6]
+      #   scm_mount: /mnt/daos6
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem7]
+      #   scm_mount: /mnt/daos7
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem8]
+      #   scm_mount: /mnt/daos8
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem9]
+      #   scm_mount: /mnt/daos9
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem10]
+      #   scm_mount: /mnt/daos10
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem11]
+      #   scm_mount: /mnt/daos11
+
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem12]
+      #   scm_mount: /mnt/daos12
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem13]
+      #   scm_mount: /mnt/daos13
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem14]
+      #   scm_mount: /mnt/daos14       
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem15]
+      #   scm_mount: /mnt/daos15
+      # -      
+      #   class: dcpm
+      #   scm_list: [/dev/pmem16]
+      #   scm_mount: /mnt/daos16
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem17]
+      #   scm_mount: /mnt/daos17
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem18]
+      #   scm_mount: /mnt/daos18
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem19]
+      #   scm_mount: /mnt/daos19
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem20]
+      #   scm_mount: /mnt/daos20 
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem21]
+      #   scm_mount: /mnt/daos21 
+      # -
+      #   class: dcpm
+      #   scm_list: [/dev/pmem22]
+      #   scm_mount: /mnt/daos22  
+      # - 
+      #   class: dcpm
+      #   scm_list: [/dev/pmem23]
+      #   scm_mount: /mnt/daos23      

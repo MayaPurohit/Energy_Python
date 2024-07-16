@@ -1,7 +1,8 @@
-# Example configuration file using TCP sockets
+# Example configuration file using tcp sockets
 
 name: daos_server           # sys group daos_server
 access_points: ['10.140.82.237']  # ip address of only the metadata server
+# access_points: ['172.16.82.237'] 
 # port: 10001               # control listen port, default 10001
 provider: ofi+tcp;ofi_rxm
 control_log_mask: DEBUG
@@ -26,134 +27,439 @@ transport_config:
 #  # Key portion of Server Certificate
 #  key: /etc/daos/certs/server.key
 engines:
-  -
-    rank: 0
-    pinned_numa_node: 1 #0
-    targets: 1               # number of I/O service threads per-engine
-    nr_xs_helpers: 1 # 4          # count of I/O offload threads per engine
-    fabric_iface: eth4
-    fabric_iface_port: 31316
-    log_mask: ERR
-    log_file: /tmp/daos_engine.0.log
+-
+  rank: 0
+  pinned_numa_node: 1 #0
+  targets: 4               # number of I/O service threads per-engine
+  nr_xs_helpers: 1 # 4          # count of I/O offload threads per engine
+  fabric_iface: eth4
+  fabric_iface_port: 31316
+  log_mask: ERR
+  log_file: /tmp/daos_engine.0.log
 
-    # Environment variable values should be supplied without encapsulating quotes.
-    env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
-      - FI_SOCKETS_MAX_CONN_RETRY=1
-      - FI_SOCKETS_CONN_TIMEOUT=2000
+  # Environment variable values should be supplied without encapsulating quotes.
+  env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+    - FI_SOCKETS_MAX_CONN_RETRY=1
+    - FI_SOCKETS_CONN_TIMEOUT=10000
 
-    # Storage definitions (one per tier)
-    storage:
-      -
-        # When class is set to dcpm, scm_list is the list of device paths for
-        # PMem namespaces (currently only one per engine supported).
-        class: dcpm
-        scm_list: [/dev/pmem1]
-        scm_mount: /mnt/daos1
+  # Storage definitions (one per tier)
+  storage:
+    -
+      # When class is set to dcpm, scm_list is the list of device paths for
+      # PMem namespaces (currently only one per engine supported).
+      class: dcpm
+      scm_list: [/dev/pmem1]
+      scm_mount: /mnt/daos1
 
-        # When class is set to ram, tmpfs will be used to emulate SCM.
-        # The size of ram is specified by scm_size in GB units.
-        # class: ram
-        # scm_size: 6
+#       # When class is set to ram, tmpfs will be used to emulate SCM.
+#       # The size of ram is specified by scm_size in GB units.
+#       # class: ram
+#       # scm_size: 6
+# 
+# -
+#   rank: 24
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31416
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.1.log
+
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000
+
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem2]
+#       scm_mount: /mnt/daos2
+# -
+#   # rank: 2
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31516
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.2.log
+
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000
+
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem3]
+#       scm_mount: /mnt/daos3
+# -
+#   rank: 3
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31616
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.3.log
+#   # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000    
+# 
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem4]
+#       scm_mount: /mnt/daos4
+# -
+#   rank: 4
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31716
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.4.log
+
+#   # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem5]
+#       scm_mount: /mnt/daos5
+# -
+#   rank: 5
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31816
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.5.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+
+# 
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem6]
+#       scm_mount: /mnt/daos6
+
   # -
-  #   pinned_numa_node: 1
-  #   targets: 16               # number of I/O service threads per-engine
-  #   nr_xs_helpers: 4          # count of I/O offload threads per engine
+  #   rank: 6
+  #   pinned_numa_node: 1 #0
+  #   targets: 4              # number of I/O service threads per-engine
+  #   nr_xs_helpers: 1          # count of I/O offload threads per engine
   #   fabric_iface: eth4
-  #   fabric_iface_port: 31416
+  #   fabric_iface_port: 31916
   #   log_mask: ERR
-  #   log_file: /tmp/daos_engine.1.log
-
+  #   log_file: /tmp/daos_engine.6.log
+  #       # Environment variable values should be supplied without encapsulating quotes.
   #   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
   #     - FI_SOCKETS_MAX_CONN_RETRY=1
-  #     - FI_SOCKETS_CONN_TIMEOUT=2000
+  #     - FI_SOCKETS_CONN_TIMEOUT=10000  
 
   #   storage:
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem2]
-      #   scm_mount: /mnt/daos2
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem3]
-      #   scm_mount: /mnt/daos3
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem4]
-      #   scm_mount: /mnt/daos4
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem5]
-      #   scm_mount: /mnt/daos5
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem6]
-      #   scm_mount: /mnt/daos6
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem7]
-      #   scm_mount: /mnt/daos7
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem8]
-      #   scm_mount: /mnt/daos8
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem9]
-      #   scm_mount: /mnt/daos9
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem10]
-      #   scm_mount: /mnt/daos10
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem11]
-      #   scm_mount: /mnt/daos11
+  #     -
+  #       class: dcpm
+  #       scm_list: [/dev/pmem7]
+  #       scm_mount: /mnt/daos7
 
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem12]
-      #   scm_mount: /mnt/daos12
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem13]
-      #   scm_mount: /mnt/daos13
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem14]
-      #   scm_mount: /mnt/daos14       
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem15]
-      #   scm_mount: /mnt/daos15
-      # -      
-      #   class: dcpm
-      #   scm_list: [/dev/pmem16]
-      #   scm_mount: /mnt/daos16
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem17]
-      #   scm_mount: /mnt/daos17
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem18]
-      #   scm_mount: /mnt/daos18
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem19]
-      #   scm_mount: /mnt/daos19
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem20]
-      #   scm_mount: /mnt/daos20 
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem21]
-      #   scm_mount: /mnt/daos21 
-      # -
-      #   class: dcpm
-      #   scm_list: [/dev/pmem22]
-      #   scm_mount: /mnt/daos22  
-      # - 
-      #   class: dcpm
-      #   scm_list: [/dev/pmem23]
-      #   scm_mount: /mnt/daos23      
+  # -
+  #   rank: 8
+  #   pinned_numa_node: 1 #0
+  #   targets: 4              # number of I/O service threads per-engine
+  #   nr_xs_helpers: 1          # count of I/O offload threads per engine
+  #   fabric_iface: eth4
+  #   fabric_iface_port: 31317
+  #   log_mask: ERR
+  #   log_file: /tmp/daos_engine.7.log
+  #       # Environment variable values should be supplied without encapsulating quotes.
+  #   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+  #     - FI_SOCKETS_MAX_CONN_RETRY=1
+  #     - FI_SOCKETS_CONN_TIMEOUT=10000  
+  #   storage:
+  #     -
+  #       class: dcpm
+  #       scm_list: [/dev/pmem8]
+  #       scm_mount: /mnt/daos8
+  # -
+  #   rank: 9
+  #   pinned_numa_node: 1 #0
+  #   targets: 4              # number of I/O service threads per-engine
+  #   nr_xs_helpers: 1          # count of I/O offload threads per engine
+  #   fabric_iface: eth4
+  #   fabric_iface_port: 31417
+  #   log_mask: ERR
+  #   log_file: /tmp/daos_engine.8.log
+  #       # Environment variable values should be supplied without encapsulating quotes.
+  #   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+  #     - FI_SOCKETS_MAX_CONN_RETRY=1
+  #     - FI_SOCKETS_CONN_TIMEOUT=10000  
+  #   storage:
+  #     -
+  #       class: dcpm
+  #       scm_list: [/dev/pmem9]
+  #       scm_mount: /mnt/daos9
+  # -
+  #   rank: 10
+  #   pinned_numa_node: 1 #0
+  #   targets: 4              # number of I/O service threads per-engine
+  #   nr_xs_helpers: 1          # count of I/O offload threads per engine
+  #   fabric_iface: eth4
+  #   fabric_iface_port: 31517
+  #   log_mask: ERR
+  #   log_file: /tmp/daos_engine.9.log
+  #       # Environment variable values should be supplied without encapsulating quotes.
+  #   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+  #     - FI_SOCKETS_MAX_CONN_RETRY=1
+  #     - FI_SOCKETS_CONN_TIMEOUT=10000  
+  #   storage:
+  #     -
+  #       class: dcpm
+  #       scm_list: [/dev/pmem10]
+  #       scm_mount: /mnt/daos10
+  # -
+  #   rank: 11
+  #   pinned_numa_node: 1 #0
+  #   targets: 4              # number of I/O service threads per-engine
+  #   nr_xs_helpers: 1          # count of I/O offload threads per engine
+  #   fabric_iface: eth4
+  #   fabric_iface_port: 31617
+  #   log_mask: ERR
+  #   log_file: /tmp/daos_engine.10.log
+  #       # Environment variable values should be supplied without encapsulating quotes.
+  #   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+  #     - FI_SOCKETS_MAX_CONN_RETRY=1
+  #     - FI_SOCKETS_CONN_TIMEOUT=10000  
+  #   storage:
+  #     -
+  #       class: dcpm
+  #       scm_list: [/dev/pmem11]
+  #       scm_mount: /mnt/daos11
+
+# -
+#   rank: 12
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31717
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.11.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem12]
+#       scm_mount: /mnt/daos12
+# -
+#   rank: 13
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31817
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.12.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem13]
+#       scm_mount: /mnt/daos13
+# -
+#   rank: 14
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31917
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.13.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem14]
+#       scm_mount: /mnt/daos14
+# -
+#   rank: 15
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31318
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.14.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem15]
+#       scm_mount: /mnt/daos15
+# -
+#   rank: 16
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31418
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.15.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem16]
+#       scm_mount: /mnt/daos16
+# -
+#   rank: 17
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31518
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.16.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem17]
+#       scm_mount: /mnt/daos17
+# -
+#   rank: 18
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31618
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.17.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem18]
+#       scm_mount: /mnt/daos18
+# -
+#   rank: 19
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31718
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.18.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem19]
+#       scm_mount: /mnt/daos19
+# -
+#   rank: 20
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31818
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.19.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem20]
+#       scm_mount: /mnt/daos20
+# -
+#   rank: 21
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31918
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.20.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem21]
+#       scm_mount: /mnt/daos21
+# -
+#   rank: 22
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31319
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.21.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem22]
+#       scm_mount: /mnt/daos22
+# -
+#   rank: 23
+#   pinned_numa_node: 0
+#   targets: 4              # number of I/O service threads per-engine
+#   nr_xs_helpers: 1          # count of I/O offload threads per engine
+#   fabric_iface: eth4
+#   fabric_iface_port: 31419
+#   log_mask: ERR
+#   log_file: /tmp/daos_engine.22.log
+#       # Environment variable values should be supplied without encapsulating quotes.
+#   env_vars:                 # influence DAOS I/O Engine behavior by setting env variables
+#     - FI_SOCKETS_MAX_CONN_RETRY=1
+#     - FI_SOCKETS_CONN_TIMEOUT=10000  
+#   storage:
+#     -
+#       class: dcpm
+#       scm_list: [/dev/pmem23]
+#       scm_mount: /mnt/daos23  

@@ -1,0 +1,165 @@
+# ###############################################################################################
+#
+# NOTE: As of today (Apr 3 2020), there does not exist a CentOS8-compatible Lustre release.
+# As a result, we are not using this playbook to install Lustre as we are installing from source.
+# Please see lustre_2.14_master.yml for instructions of how to build from source
+#
+# As of Feb 19, 2021, lustre 2.14 has been officially released. This is now the recommended
+# playbook for installing Lustre
+#
+#################################################################################################
+- hosts: storage_nodes, metadata_server
+  remote_user: cc
+  become: true
+  become_user: root
+  tasks:
+          - name: "install dkms required modules"
+            ansible.builtin.command:
+                    argv:
+                      - dnf
+                      - -y
+                      - install
+                      - asciidoc
+                      - audit-libs-devel
+                      - automake
+                      - bc
+                      - binutils-devel
+                      - bison
+                      - device-mapper-devel
+                      - elfutils-devel
+                      - elfutils-libelf-devel
+                      - expect
+                      - flex
+                      - gcc
+                      - gcc-c++
+                      - git
+                      - glib2
+                      - glib2-devel
+                      - hmaccalc
+                      - keyutils-libs-devel
+                      - krb5-devel
+                      - ksh
+                      - libattr-devel
+                      - libblkid-devel
+                      - libselinux-devel
+                      - libtool
+                      - libuuid-devel
+                      - libyaml-devel
+                      - lsscsi
+                      - make
+                      - ncurses-devel
+                      - net-snmp-devel
+                      - net-tools
+                      - newt-devel
+                      - numactl-devel
+                      - parted
+                      - patchutils
+                      - pciutils-devel
+                      - perl-ExtUtils-Embed
+                      - pesign
+                      - python3-devel
+                      - redhat-rpm-config
+                      - rpm-build
+                      - systemd-devel
+                      - tcl
+                      - tcl-devel
+                      - tk
+                      - tk-devel
+                      - wget
+                      - xmlto
+                      - yum-utils
+                      - zlib-devel
+  tags: dkms-setup
+- hosts: storage_nodes, metadata_server
+  remote_user: cc
+  tasks:
+          - name: "install Lustre e2fsprogs"
+            ansible.builtin.command:
+                    argv: 
+                      - sudo
+                      - dnf 
+                      - install
+                      - -y
+                      - e2fsprogs
+          - name: "Added this to make ZFS work"
+            ansible.builtin.command:
+                  argv: 
+                  - sudo 
+                  - dnf
+                  - install
+                  - https://zfsonlinux.org/epel/zfs-release-2-3.el8.noarch.rpm
+                  - -y
+          - name: "install epel repository support"
+            ansible.builtin.command:
+                    argv: 
+                    - sudo 
+                    - dnf
+                    - install
+                    - -y 
+                    - epel-release
+          - name: "Install Kernel Packages"
+            ansible.builtin.command:
+                   argv:
+                   - sudo 
+                   - yum 
+                   - --disablerepo=baseos,extras
+                   - --enablerepo=lustre-server
+                   - install
+                   - kernel-4.18.0-553.5.1.el8
+                   - kernel-devel-4.18.0-553.5.1.el8
+                   - kernel-headers-4.18.0-553.5.1.el8
+                   - kernel-tools-4.18.0-553.5.1.el8
+                   - kernel-tools-libs-4.18.0-553.5.1.el8
+                  #  - kernel-tools-libs-devel-4.18.0-553.5.1.el8
+          - name: "install lustre with ZFS OSDs"
+            ansible.builtin.command:
+                    argv:
+                    - sudo
+                    - dnf
+                    - --nogpgcheck
+                    - -y
+                    - --enablerepo=ha
+                    - install
+                    - lustre
+                    - lustre-osd-zfs-mount
+                    - lustre-zfs-dkms
+                    - lustre-dkms
+                    - zfs
+                    - lustre-resource-agents
+          # - name: "Load ZFS kernel modules"
+          #   ansible.builtin.command:
+          #           argv: 
+          #           - sudo 
+          #           - modprobe
+          #           - -v
+          #           - zfs
+          # - name: "Load the Lustre modules"
+          #   ansible.builtin.command:
+          #           argv: 
+          #           - sudo 
+          #           - modprobe
+          #           - -v
+          #           - lustre
+          # - name: "Unload"
+          #   ansible.builtin.command:
+          #           argv: 
+          #           - sudo 
+          #           - lustre_rmmod
+
+          # - name: "Reboot to apply modified Lustre kernel"
+          #   ansible.builtin.reboot:
+          #     msg: "Rebooting machine"
+  tags: install-server
+- hosts: compute 
+  remote_user: cc
+  tasks:
+          - name: "install lustre dkms"
+            ansible.builtin.command:
+                    argv:
+                    - sudo 
+                    - dnf
+                    - install
+                    - -y
+                    - lustre-client-dkms
+                    - lustre-client
+  tags: install-client

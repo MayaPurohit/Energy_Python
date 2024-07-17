@@ -1,0 +1,13 @@
+storage_nodes:
+  hosts:
+    lustre_storage:
+      ansible_host: 129.114.109.224
+    # lustre_storage2:
+    #   ansible_host: 129.114.108.158
+
+ungrouped:
+  hosts:
+    metadata_server:
+      ansible_host: 129.114.109.198
+    compute:
+      ansible_host: 129.114.108.31

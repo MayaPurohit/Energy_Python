@@ -1,0 +1,284 @@
+- hosts: all
+  remote_user: cc
+  become_user: root
+  become: true
+  tasks:
+        - name: "update /etc/modprobe.d/lustre.conf if it doesn't exist"
+          lineinfile:
+                  path: /etc/modprobe.d/lustre.conf
+                  line: options lnet networks=tcp
+                  create: yes
+        # - name: "stop the firewall"
+        #   service:
+        #           name: firewalld
+        #           state: stopped
+  tags: all
+# - hosts: metadata_server
+#   remote_user: cc
+#   become_user: root
+#   become: true
+#   tasks:
+#           - name: "format disk to be lustre metadata/management server"
+#             command: "mkfs.lustre --fsname=lustre --backfstype=zfs --mgs --mdt --index=0 --reformat mgspool/mdt /dev/sda4"
+#           - name: "tune the disks" 
+#             command: "tunefs.lustre --writeconf --dryrun mgspool/mdt"
+#           - name: "update /etc/ldev.conf"
+#             lineinfile:
+#                     path: /etc/ldev.conf
+#                     line: "{{ inventory_hostname }} - mdt zfs:mgspool/mdt"
+#           - name: "start the lustre service"
+#             service:
+#                     name: lustre
+#                     state: started
+#                     enabled: yes
+#           - name: "Create mount directory"
+#             command: "sudo mkdir -p /lustre/mdt"
+#           - name: "Mount metadata server"
+#             command: sudo mount -t lustre mgspool/mdt /lustre/mdt
+#   tags: metadata-server
+- hosts: lustre_storage
+  remote_user: cc
+  become_user: root
+  become: true
+  tasks:
+        - name: "format disks for lustre"
+          command: "mkfs.lustre --ost --backfstype=zfs --fsname=lustre --index={{ item.index }} --mgsnode=10.52.2.247@tcp --reformat lustre-ost0{{ item.index }}/ost{{ item.index }} {{ item.device }}"
+          with_items:
+                  # - { index: '0', device: '/dev/sda' }
+                  - { index: '1', device: '/dev/sdb' }
+                  - { index: '2', device: '/dev/sdc' }
+                  - { index: '3', device: '/dev/sdd' }
+                  - { index: '4', device: '/dev/sde' }
+                  - { index: '5', device: '/dev/sdf' }
+                  - { index: '6', device: '/dev/sdg' }
+                  - { index: '7', device: '/dev/sdh' }
+                  - { index: '9', device: '/dev/sdj' }
+                  - { index: '10', device: '/dev/sdl' }
+                  - { index: '11', device: '/dev/sdm' }
+                  - { index: '12', device: '/dev/sdn' }
+                  - { index: '13', device: '/dev/sdo' }
+                  - { index: '14', device: '/dev/sdp' }
+                  - { index: '15', device: '/dev/sdq' }
+                  - { index: '16', device: '/dev/sdr' }
+        - name: "tune the disks" 
+          command: "tunefs.lustre --dryrun lustre-ost0{{ item }}/ost{{ item }}"
+          with_items:
+                  # - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                  - 14
+                  - 15
+                  - 16
+        - name: "update /etc/ldev.conf"
+          lineinfile:
+                  path: /etc/ldev.conf
+                  line: "{{ inventory_hostname}} - ost{{ item }} zfs:lustre{{ item }}/ost{{ item }}"
+          with_items:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                  - 14
+                  - 15
+                  - 16
+        - name: "start the lustre service"
+          service:
+                  name: lustre
+                  state: started
+                  enabled: yes
+        - name: "create directories"
+          command: "sudo mkdir -p /lustre0{{ item }}/ost{{ item }}"
+          with_items:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                  - 14
+                  - 15
+                  - 16
+          tags: make
+
+        - name: "mount lustre disks"
+          command: "sudo mount -t lustre lustre-ost0{{ item }}/ost{{ item }} /lustre0{{ item }}/ost{{ item }}"
+          with_items:
+                  # - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                  - 14
+                  - 15
+                  - 16
+          tags: mount
+  tags: lustre_storage
+# - hosts: lustre_storage2 
+#   remote_user: cc
+#   become_user: root
+#   become: true
+#   tasks:
+#         - name: "format disks for lustre"
+#           command: "mkfs.lustre --ost --backfstype=zfs --fsname=lustre --index={{ item.index }} --mgsnode=10.52.3.106@tcp --reformat lustre-ost1{{ item.index }}/ost{{ item.index }} {{ item.device }}"
+#           with_items:
+#                   - { index: '17', device: '/dev/sda' }
+#                   - { index: '18', device: '/dev/sdb' }
+#                   - { index: '19', device: '/dev/sdc' }
+#                   - { index: '20', device: '/dev/sdd' }
+#                   - { index: '21', device: '/dev/sde' }
+#                   - { index: '22', device: '/dev/sdf' }
+#                   - { index: '23', device: '/dev/sdg' }
+#                   - { index: '24', device: '/dev/sdh' }
+#                   - { index: '25', device: '/dev/sdi' }
+#                   - { index: '26', device: '/dev/sdj' }
+#                   - { index: '27', device: '/dev/sdl' }
+#                   - { index: '28', device: '/dev/sdm' }
+#                   - { index: '29', device: '/dev/sdn' }
+#                   - { index: '30', device: '/dev/sdo' }
+#                   - { index: '31', device: '/dev/sdp' }
+#                   - { index: '32', device: '/dev/sdq' }
+#           ignore_errors: yes
+#         - name: "tune the disks" 
+#           command: "tunefs.lustre --dryrun lustre{{ item }}/ost{{ item }}"
+#           with_items:
+#                   - 17
+#                   - 18
+#                   - 19
+#                   - 20
+#                   - 21
+#                   - 22
+#                   - 23
+#                   - 24
+#                   - 25
+#                   - 26
+#                   - 27
+#                   - 28
+#                   - 29
+#                   - 30
+#                   - 31
+#                   - 32
+#         - name: "update /etc/ldev.conf"
+#           lineinfile:
+#                   path: /etc/ldev.conf
+#                   line: "{{ inventory_hostname}} - ost{{ item }} zfs:lustre-ost1{{ item }}/ost{{ item }}"
+#           with_items:
+#                   - 17
+#                   - 18
+#                   - 19
+#                   - 20
+#                   - 21
+#                   - 22
+#                   - 23
+#                   - 24
+#                   - 25
+#                   - 26
+#                   - 27
+#                   - 28
+#                   - 29
+#                   - 30
+#                   - 31
+#                   - 32
+#         - name: "start the lustre service"
+#           service:
+#                   name: lustre
+#                   state: started
+#                   enabled: yes
+#         - name: "create directories"
+#           command: "sudo mkdir -p /lustre{{ item }}/ost{{ item }}"
+#           with_items:
+#                   - 17
+#                   - 18
+#                   - 19
+#                   - 20
+#                   - 21
+#                   - 22
+#                   - 23
+#                   - 24
+#                   - 25
+#                   - 26
+#                   - 27
+#                   - 28
+#                   - 29
+#                   - 30
+#                   - 31
+#                   - 32
+
+#         - name: "mount lustre disks"
+#           command: "sudo mount -t lustre lustre{{ item }}/ost{{ item }} /lustre{{ item }}/ost{{ item }}"
+#           with_items:
+#                   - 17
+#                   - 18
+#                   - 19
+#                   - 20
+#                   - 21
+#                   - 22
+#                   - 23
+#                   - 24
+#                   - 25
+#                   - 26
+#                   - 27
+#                   - 28
+#                   - 29
+#                   - 30
+#                   - 31
+#                   - 32
+
+#   tags: lustre_storage2
+- hosts: compute
+  become_user: root
+  become: true
+  remote_user: cc
+  tasks:
+          - name: "create /etc/modprobe.d/lustre.conf if it doesn't exist"
+            lineinfile:
+                path: /etc/modprobe.d/lustre.conf
+                line: options lnet networks=tcp
+                create: yes
+          - name: "create mount dir for lustre"
+            file:
+                    path: /mnt/lustre
+                    state: directory
+          - name: "mount lustre"
+            mount:
+                    fstype: lustre
+                    src: 10.52.2.247:/lustre
+                    path: /mnt/lustre
+                    state: mounted
+  tags: client
+
+
+

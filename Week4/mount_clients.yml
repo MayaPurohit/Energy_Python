@@ -1,9 +1,0 @@
-- hosts: compute
-  remote_user: cc
-  tasks:
-          - name: "mount lustre"
-            mount:
-                    fstype: lustre
-                    src: 10.1.1.2:/lustre
-                    path: /mnt/lustre
-                    state: mounted

@@ -1,4 +1,3 @@
-
 # DAOS manager (dmg) configuration file.
 
 # Location of this configuration file is determined by first checking for the
@@ -25,7 +24,7 @@ port: 10001
 # Hostlist, a comma separated list of addresses (hostnames or IPv4 addresses).
 #default: ['localhost']
 #hostlist: ['192.5.87.103', '192.5.87.49', '10.52.0.122']
-hostlist: ['10.140.82.237', '10.140.83.50']
+hostlist: ['10.140.81.193', '10.140.82.118']
 # hostlist: ['172.16.82.237', '172.16.81.193']
 # Transport Credentials Specifying certificates to secure communications
 
@@ -36,6 +35,10 @@ transport_config:
 
  # Custom CA Root certificate for generated certs
  ca_cert: /etc/daos/certs/daosCA.crt
+ # Admin certificate for use in TLS handshakes
+ cert: /etc/daos/certs/admin.crt
+ # Key portion of Admin Certificate
+ key: /etc/daos/certs/admin.key
  # Admin certificate for use in TLS handshakes
  cert: /etc/daos/certs/admin.crt
  # Key portion of Admin Certificate

@@ -24,7 +24,7 @@ port: 10001
 # Hostlist, a comma separated list of addresses (hostnames or IPv4 addresses).
 #default: ['localhost']
 #hostlist: ['192.5.87.103', '192.5.87.49', '10.52.0.122']
-hostlist: ['10.140.81.193', '10.140.82.118']
+hostlist: ['10.140.81.193', '10.140.82.118'] #all of the server nodes that are in the daos system
 # hostlist: ['172.16.82.237', '172.16.81.193']
 # Transport Credentials Specifying certificates to secure communications
 

@@ -21,7 +21,7 @@ name: daos_server
 # Must have the same value for all agents and servers in a system.
 #default: hostname of this node
 # access_points: ['172.16.82.237']
-access_points: ['10.140.82.237']
+access_points: ['10.140.81.193']
 # Force different port number to connect to access points.
 #default: 10001
 port: 10001

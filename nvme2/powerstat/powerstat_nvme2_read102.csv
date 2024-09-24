@@ -1,0 +1,98 @@
+Running for 1000.0 seconds (1000 samples at 1.0 second intervals).
+Power measurements will start in 0 seconds time.
+
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:34   1.9   0.0   0.4  97.7   0.0    4   6388   4999   10    9   10 123.62    0.07  61.78   3.69  61.84  0.00 Hz   -N/A-
+06:24:35   1.9   0.0   0.4  97.7   0.0    2   6701   5191   23   24   22 123.53    0.07  61.69   3.69  61.84  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:36   1.9   0.0   0.4  97.7   0.0    2   6538   4829   27   14   29 123.56    0.07  61.76   3.69  61.80  0.00 Hz   -N/A-
+06:24:37   3.3   0.0   0.6  96.1   0.0    3   4434   4716    0    0    0 126.33    0.06  64.61   3.71  61.73  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:38   3.7   0.0   0.6  95.7   0.0    4   4763  10686    3    1    3 127.34    0.07  65.60   3.73  61.74  0.00 Hz   -N/A-
+06:24:39   4.2   0.0   2.3  93.5   0.0    5  23149  30969 1547 1034 1546 132.09    0.06  65.96   3.72  66.13  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:40   4.1   0.0   2.0  93.9   0.0    3  18748  27935 1163  782 1164 131.19    0.06  66.17   3.72  65.02  0.00 Hz   -N/A-
+06:24:41   2.9   0.0   0.5  96.6   0.0    2   6433  14325   27   14   29 125.98    0.07  64.15   2.30  61.83  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:42   1.9   0.0   0.3  97.7   0.0    2   7000  13530    0    0    0 123.93    0.07  62.17   0.14  61.75  0.00 Hz   -N/A-
+06:24:43   2.5   0.0   0.4  97.1   0.0    3   6582  14059    0    0    0 125.11    0.06  63.36   1.54  61.75  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:44   3.6   0.0   0.7  95.7   0.0    3   5395  14712    0    0    0 127.48    0.07  65.72   3.69  61.76  0.00 Hz   -N/A-
+06:24:45   3.5   0.0   0.7  95.8   0.0    3   5279  14600    0    0    0 127.25    0.07  65.50   3.70  61.75  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:46   3.6   0.0   0.7  95.7   0.0    3   5280  14645    0    0    0 127.50    0.07  65.74   3.72  61.76  0.00 Hz   -N/A-
+06:24:47   3.5   0.0   0.7  95.8   0.0    3   5236  14520    0    0    0 127.32    0.06  65.52   3.71  61.81  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:48   3.6   0.0   0.7  95.7   0.0    3   5297  15115    0    0    0 127.61    0.07  65.85   3.71  61.77  0.00 Hz   -N/A-
+06:24:49   3.5   0.0   0.7  95.8   0.0    3   5356  14907    0    0    0 127.40    0.06  65.65   3.70  61.75  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:50   3.6   0.0   0.7  95.7   0.0    3   5217  14934    0    0    0 127.58    0.06  65.83   3.72  61.74  0.00 Hz   -N/A-
+06:24:51   3.4   0.0   0.8  95.8   0.0    3   5450  14953    0    0    0 127.33    0.07  65.59   3.71  61.74  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:52   3.6   0.0   0.7  95.7   0.0    3   5298  14700    0    0    0 127.52    0.06  65.77   3.72  61.75  0.00 Hz   -N/A-
+06:24:53   2.9   0.0   0.6  96.6   0.0    3   5951  14323    0    0    0 126.05    0.06  64.28   2.45  61.76  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:54   3.7   0.0   0.6  95.7   0.0    3   5175  14516    0    0    0 127.53    0.07  65.77   3.71  61.76  0.00 Hz   -N/A-
+06:24:55   3.5   0.0   0.7  95.8   0.0    3   5267  14915    0    0    0 127.35    0.07  65.59   3.71  61.76  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:56   3.7   0.0   0.7  95.7   0.0    3   5315  14840    0    0    0 127.58    0.06  65.83   3.72  61.75  0.00 Hz   -N/A-
+06:24:57   3.4   0.0   0.7  95.8   0.0    3   5184  14334    0    0    0 127.41    0.06  65.60   3.70  61.81  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:24:58   3.6   0.0   0.8  95.7   0.0    3   5177  14471    0    0    0 127.61    0.06  65.85   3.69  61.76  0.00 Hz   -N/A-
+06:24:59   3.5   0.0   0.7  95.8   0.0    3   5227  14103    0    0    0 127.30    0.06  65.56   3.69  61.74  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:25:00   3.7   0.0   0.6  95.7   0.0    3   5329  15068    0    0    0 127.56    0.07  65.80   3.68  61.76  0.00 Hz   -N/A-
+06:25:01   2.8   0.0   0.5  96.6   0.0    2   6203  14788    0    0    0 125.93    0.07  64.17   2.29  61.76  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:25:02   1.9   0.0   0.3  97.7   0.0    2   7068  14033    0    0    0 123.99    0.06  62.22   0.14  61.77  0.00 Hz   -N/A-
+06:25:03   2.4   0.0   0.5  97.1   0.0    3   6350  14219    0    0    0 125.14    0.07  63.39   1.53  61.76  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:25:04   3.6   0.0   0.7  95.7   0.0    3   5269  14891    0    0    0 127.54    0.06  65.77   3.68  61.77  0.00 Hz   -N/A-
+06:25:05   3.5   0.0   0.7  95.8   0.0    3   5247  15013    0    0    0 127.37    0.06  65.56   3.67  61.82  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:25:06   3.6   0.0   0.7  95.7   0.0    3   4253   6235    0    0    0 127.25    0.06  65.50   3.67  61.74  0.00 Hz   -N/A-
+06:25:07   3.5   0.0   0.7  95.8   0.0    3   4179   4822    0    0    0 127.00    0.07  65.27   3.69  61.72  0.00 Hz   -N/A-
+-------- ----- ----- ----- ----- ----- ---- ------ ------ ---- ---- ---- ------  ------ ------ ------ ------ --------- ------
+ Average   3.2   0.0   0.7  96.1   0.0  2.9 6462.9 13673.4 82.4 55.2 82.4 126.83    0.06  64.84   3.25  61.99  0.00 Hz   -N/A-
+ GeoMean   3.1   0.0   0.6  96.1   0.0  2.9 5957.9 12509.4  0.0  0.0  0.0 126.82    0.06  64.83   2.78  61.98  0.00 Hz    0.00
+  StdDev   0.7   0.0   0.4   0.9   0.0  0.6 3729.5 5355.2 321.6 215.4 321.6   1.81    0.00   1.39   0.99   0.91  0.00 Hz   -N/A-
+-------- ----- ----- ----- ----- ----- ---- ------ ------ ---- ---- ---- ------  ------ ------ ------ ------ --------- ------
+ Minimum   1.9   0.0   0.3  93.5   0.0  2.0 4179.0 4716.0  0.0  0.0  0.0 123.53    0.06  61.69   0.14  61.72  0.00 Hz   -N/A-
+ Maximum   4.2   0.0   2.3  97.7   0.0  5.0 23149.0 30969.0 1547.0 1034.0 1546.0 132.09    0.07  66.17   3.73  66.13  0.00 Hz   -N/A-
+-------- ----- ----- ----- ----- ----- ---- ------ ------ ---- ---- ---- ------  ------ ------ ------ ------ --------- ------
+Summary:
+CPU: 126.83 Watts on average with standard deviation 1.81  
+GPU:   0.00 Watts on average with standard deviation 0.00  
+Note: power read from RAPL domains: core, package-0, core, package-1.
+These readings do not cover all the hardware in this device.
+Note: No thermal zones on this device.
+
+Histogram (of 34 power measurements)
+
+  Range (Watts)   Count
+123.527 - 124.382     5 #########
+124.383 - 125.238     2 ###
+125.239 - 126.094     3 #####
+126.095 - 126.949     1 #
+126.950 - 127.805    21 ########################################
+127.806 - 128.661     0 
+128.662 - 129.517     0 
+129.518 - 130.373     0 
+130.374 - 131.229     1 #
+131.230 - 132.085     1 #
+
+Histogram (of 34 CPU utilization measurements)
+
+Range (%CPU)  Count
+2.250 - 2.674     5 #########
+2.675 - 3.099     2 ###
+3.100 - 3.524     3 #####
+3.525 - 3.949     1 #
+3.950 - 4.374    21 ########################################
+4.375 - 4.799     0 
+4.800 - 5.224     0 
+5.225 - 5.649     0 
+5.650 - 6.074     0 
+6.075 - 6.498     2 ###
+
+Range is zero, cannot produce histogram of CPU average frequencies

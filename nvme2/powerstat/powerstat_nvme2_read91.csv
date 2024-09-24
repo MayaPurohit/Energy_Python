@@ -1,0 +1,17 @@
+Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:37:07   3.1   0.0   0.6  96.2   0.0    4   5047   5775   10    9   10 126.18    0.07  64.40   3.70  61.78  0.00 Hz   -N/A-
+06:37:08   3.1   0.0   0.5  96.4   0.0    4   5023   5205   16   17   15 125.94    0.07  64.16   3.69  61.78  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:37:09   3.5   0.0   0.7  95.8   0.0    3   5652  14743   28   14   29 127.32    0.09  65.51   3.71  61.81  0.00 Hz   -N/A-
+06:37:10   3.6   0.0   0.8  95.7   0.0    3   5342  15211    0    0    0 127.48    0.07  65.74   3.70  61.74  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:37:11   2.0   0.0   0.3  97.7   0.0    4   7029  12388    6    4    6 124.04    0.07  62.30   0.57  61.74  0.00 Hz   -N/A-
+06:37:12   2.6   0.0   2.1  95.2   0.0    4  23985  22720 1506 1002 1504 128.27    0.42  62.35   0.17  65.92  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:37:13   3.8   0.0   1.9  94.3   0.0    3  18999  18920 1224  823 1225 130.25    0.07  68.32   3.29  61.93  0.00 Hz   -N/A-
+06:37:14   3.7   0.0   0.6  95.6   0.0    3   4493   5931   27   14   29 127.21    0.07  65.47   3.70  61.74  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:37:15   3.5   0.0   0.6  95.8   0.0    3   4309   5176    0    0    0 127.04    0.06  65.32   3.70  61.72  0.00 Hz   -N/A-
+06:37:16   3.7   0.0   0.7  95.7   0.0    3   4092   5034    0    0    0 127.21    0.07  65.49   3.71  61.72  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:37:17   3.6   0.0   0.6  95.8   0.0    3   4251   5071    0    0    0 126.98    0.07  65.26   3.72  61.72  0.00 Hz   -N/A-

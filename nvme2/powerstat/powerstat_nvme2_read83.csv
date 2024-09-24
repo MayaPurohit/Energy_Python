@@ -1,0 +1,61 @@
+Running for 1000.0 seconds (1000 samples at 1.0 second intervals).
+Power measurements will start in 0 seconds time.
+
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:43:29   1.9   0.0   0.4  97.7   0.0    4   6765   5105   33   21   34 123.67    0.07  61.91   3.67  61.76  0.00 Hz   -N/A-
+06:43:30   3.1   0.0   0.6  96.3   0.0    3   5465   5699   23   24   22 126.06    0.06  64.26   3.68  61.80  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:43:31   2.2   0.0   0.3  97.5   0.0    2   6281   4888   27   14   29 124.01    0.06  62.29   0.52  61.72  0.00 Hz   -N/A-
+06:43:32   1.8   0.0   0.3  97.9   0.0    2   6147   4215    0    0    0 123.32    0.06  61.59   0.14  61.73  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:43:33   2.0   0.0   0.3  97.7   0.0    3   6397   5023   26   24   24 123.71    0.06  61.92   0.14  61.79  0.00 Hz   -N/A-
+06:43:34   2.7   0.0   2.1  95.2   0.0    4  26078  21031 1659 1103 1662 128.63    0.06  64.26   0.72  64.37  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:43:35   4.1   0.0   1.9  94.0   0.0    3  16901  19365 1073  716 1075 130.63    0.06  65.75   3.67  64.88  0.00 Hz   -N/A-
+06:43:36   3.5   0.0   0.6  95.8   0.0    3   4364   6160    0    0    0 126.94    0.07  65.19   3.70  61.75  0.00 Hz   -N/A-
+  Time    User  Nice   Sys  Idle    IO  Run Ctxt/s  IRQ/s Fork Exec Exit  Watts    core  pkg-0   core  pkg-1  CPU Freq  GPU W
+06:43:37   3.8   0.0   0.6  95.7   0.0    3   4097   5156    0    0    0 127.14    0.06  65.42   3.71  61.72  0.00 Hz   -N/A-
+-------- ----- ----- ----- ----- ----- ---- ------ ------ ---- ---- ---- ------  ------ ------ ------ ------ --------- ------
+ Average   2.8   0.0   0.8  96.4   0.0  3.0 9166.1 8515.8 315.7 211.3 316.2 126.01    0.06  63.62   2.22  62.39  0.00 Hz   -N/A-
+ GeoMean   2.7   0.0   0.6  96.4   0.0  2.9 7464.6 6972.4  0.0  0.0  0.0 125.99    0.06  63.60   1.19  62.38  0.00 Hz    0.00
+  StdDev   0.8   0.0   0.7   1.3   0.0  0.7 6985.4 6276.9 578.3 384.3 579.4   2.41    0.00   1.59   1.65   1.20  0.00 Hz   -N/A-
+-------- ----- ----- ----- ----- ----- ---- ------ ------ ---- ---- ---- ------  ------ ------ ------ ------ --------- ------
+ Minimum   1.8   0.0   0.3  94.0   0.0  2.0 4097.0 4215.0  0.0  0.0  0.0 123.32    0.06  61.59   0.14  61.72  0.00 Hz   -N/A-
+ Maximum   4.1   0.0   2.1  97.9   0.0  4.0 26078.0 21031.0 1659.0 1103.0 1662.0 130.63    0.07  65.75   3.71  64.88  0.00 Hz   -N/A-
+-------- ----- ----- ----- ----- ----- ---- ------ ------ ---- ---- ---- ------  ------ ------ ------ ------ --------- ------
+Summary:
+CPU: 126.01 Watts on average with standard deviation 2.41  
+GPU:   0.00 Watts on average with standard deviation 0.00  
+Note: power read from RAPL domains: core, package-0, core, package-1.
+These readings do not cover all the hardware in this device.
+Note: No thermal zones on this device.
+
+Histogram (of 9 power measurements)
+
+  Range (Watts)   Count
+123.319 - 124.049     4 ########################################
+124.050 - 124.780     0 
+124.781 - 125.510     0 
+125.511 - 126.241     1 ##########
+126.242 - 126.972     1 ##########
+126.973 - 127.703     1 ##########
+127.704 - 128.434     0 
+128.435 - 129.164     1 ##########
+129.165 - 129.895     0 
+129.896 - 130.626     1 ##########
+
+Histogram (of 9 CPU utilization measurements)
+
+Range (%CPU)  Count
+2.084 - 2.473     3 ########################################
+2.474 - 2.864     1 #############
+2.865 - 3.254     0 
+3.255 - 3.645     0 
+3.646 - 4.035     1 #############
+4.036 - 4.426     2 ##########################
+4.427 - 4.817     1 #############
+4.818 - 5.207     0 
+5.208 - 5.598     0 
+5.599 - 5.988     1 #############
+
+Range is zero, cannot produce histogram of CPU average frequencies

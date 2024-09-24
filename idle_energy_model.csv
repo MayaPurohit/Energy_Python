@@ -1,0 +1,6 @@
+,IPMI Idle (W),CPU Idle (W),RAM Idle (W),Disk Storage (GB),RAM Storage (GB),CPU TDP (W),Number of Cores 
+,numeric,numeric,numeric,numeric,numeric,numeric,numeric
+Client,207.8975741,23.64629,2.614429616,223.6,186,125,24
+Storage,112.2605364,72.26646,20.87795485,25000,62,105,20
+Compute_Cascade,256.4502436,75.87311,12.70601418,447.1,187,165,48
+NVMe_Storage,245.1455976,117.91923,,15894.3,251,155,48

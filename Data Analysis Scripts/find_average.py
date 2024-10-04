@@ -7,7 +7,7 @@ import sys
 import plot_data
 
 
-average1 = plot_data.prep_data(r"C:\Users\mayam\OneDrive\Desktop\BigDataX\AllAreas.csv", "powerstat", "write")
+average1 = plot_data.prep_data(r"C:\Users\mayam\OneDrive\Desktop\BigDataX\Week8\ipmi_data10_soy.csv", "ipmi", "write", False)
 # average2 = plot_data.prep_data(r"C:\Users\mayam\OneDrive\Desktop\BigDataX\Week5\client\powerstat\powerstat_client_102.csv", "powerstat")
 # average3 = plot_data.prep_data(r"C:\Users\mayam\OneDrive\Desktop\BigDataX\Week5\client\powerstat\powerstat_client_103.csv", "powerstat")
 

@@ -2,8 +2,7 @@ import pandas as pd
 import json
 
 # Specify the input and output file paths
-input_file = "your_file.jsonl"  # Replace with your JSONL file
-output_file = "output_file.xlsx"  # Replace with your desired Excel file name
+input_file = "tasks.jsonl"  # Replace with your JSONL file
 
 # Read the JSONL file
 data = []
@@ -11,10 +10,19 @@ with open(input_file, 'r') as file:
     for line in file:
         data.append(json.loads(line))
 
-# Convert to DataFrame
+
 df = pd.DataFrame(data)
 
-# Write to Excel
-df.to_excel(output_file, index=False, engine='openpyxl')
+execution = df['execution'].to_list()
+new_data = []
 
-print(f"JSONL file has been converted to {output_file}")
+
+for i in range(len(execution)):
+    new_data.append(json.loads(json.dumps(execution[i])))
+
+final = pd.DataFrame(new_data).to_numpy()
+print(final.shape)
+
+initial_time = final[0,1]
+final[:, 1:] = final[:, 1:] - initial_time
+print(final)

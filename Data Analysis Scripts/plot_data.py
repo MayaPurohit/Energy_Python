@@ -5,7 +5,7 @@ import pandas as pd
 import sys
 # from scipy.linalg import lstsq
 
-# idleMeasurements =  storageVals = pd.read_csv("idle_measurements.csv").to_numpy()
+idleMeasurements =  pd.read_csv(fr"C:\Users\mayam\Energy_Python\Data Analysis Scripts\idle_measurements.csv").to_numpy()
 # writeMeasurements = pd.read_csv("CPUWrite.csv").to_numpy()
 # nowriteMeasurements = pd.read_csv("NoWriteMeasurements.csv").to_numpy()
 # nowriteCPU = pd.read_csv("CPUNoWrite.csv").to_numpy()

@@ -3,7 +3,8 @@ import json
 import numpy as np
 import plot_data
 import matplotlib.pyplot as plt 
-
+from scipy.linalg import lstsq
+import scipy.integrate
 
 def parse_json(filename):
 
@@ -67,7 +68,10 @@ def plot_gantt(json_file, energy_file, workflow_type, byte_size):
     plt.show()
 
 
-plot_gantt("bag_8_daos.jsonl", "ipmi_bag_8_daos.csv", "bag", 8)
+prepped_data = plot_data.prep_data(fr"C:\Users\mayam\Energy_Python\{energy_file}", "ipmi", "write")
 
+area = scipy.integrate.simpson(prepped_data[:, 3], x = prepped_data[:, 2])
+
+plot_gantt("bag_8_daos.jsonl", "ipmi_bag_8_daos.csv", "bag", 8)
 
 

@@ -5,10 +5,10 @@ import pandas as pd
 import sys
 # from scipy.linalg import lstsq
 
-idleMeasurements =  storageVals = pd.read_csv("idle_measurements.csv").to_numpy()
+# idleMeasurements =  storageVals = pd.read_csv("idle_measurements.csv").to_numpy()
 # writeMeasurements = pd.read_csv("CPUWrite.csv").to_numpy()
-nowriteMeasurements = pd.read_csv("NoWriteMeasurements.csv").to_numpy()
-nowriteCPU = pd.read_csv("CPUNoWrite.csv").to_numpy()
+# nowriteMeasurements = pd.read_csv("NoWriteMeasurements.csv").to_numpy()
+# nowriteCPU = pd.read_csv("CPUNoWrite.csv").to_numpy()
 # print(nowriteCPU)
 
 
@@ -115,30 +115,30 @@ def prep_data(filename, typePower, iotype, typeNode = None, account_idle = False
 
         totalVals = np.hstack((storageVals, time_elapsed))
 
-        if iotype == "read":
-            if typeNode == "nvme1":
-                totalVals[:,2] = totalVals[:,2] - 200
-        #     # print(totalVals[:, 2])
+        # if iotype == "read":
+        #     if typeNode == "nvme1":
+        #         totalVals[:,2] = totalVals[:,2] - 200
+        # #     # print(totalVals[:, 2])
 
-        if account_idle == True:
-            if typeNode == "client" or typeNode == "disk" or typeNode == "memory" or typeNode == "transferdisk" or typeNode == "transfermemory":
-                print(totalVals[:,2])
-                totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXClient]
-                print(totalVals[:,2])
-            elif typeNode == "metadata":
-                totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXMetadata]
-            elif typeNode == "storage":
-                totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXStorage]
-            elif typeNode == "admin" or typeNode == "diskadmin" or typeNode == "memoryadmin" or typeNode == "transferadmin":
-                totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXAdmin]
-            elif typeNode == "nvme1":
-                totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXNvme1] 
-            else: 
-                totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXNvme2] 
+        # if account_idle == True:
+        #     if typeNode == "client" or typeNode == "disk" or typeNode == "memory" or typeNode == "transferdisk" or typeNode == "transfermemory":
+        #         print(totalVals[:,2])
+        #         totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXClient]
+        #         print(totalVals[:,2])
+        #     elif typeNode == "metadata":
+        #         totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXMetadata]
+        #     elif typeNode == "storage":
+        #         totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXStorage]
+        #     elif typeNode == "admin" or typeNode == "diskadmin" or typeNode == "memoryadmin" or typeNode == "transferadmin":
+        #         totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXAdmin]
+        #     elif typeNode == "nvme1":
+        #         totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXNvme1] 
+        #     else: 
+        #         totalVals[:,2] = totalVals[:,2] - idleMeasurements[IDXIPMIIdle, IDXNvme2] 
             
-            totalVals[:, 2][totalVals[:, 2] < 0] = 0
+        #     totalVals[:, 2][totalVals[:, 2] < 0] = 0
 
-        print(idleMeasurements[IDXIPMIIdle, IDXClient])
+        # print(idleMeasurements[IDXIPMIIdle, IDXClient])
     return totalVals
 
 def removeCPU(filename, iotype, typeNode, size, considered):
